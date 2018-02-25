@@ -1,0 +1,40 @@
+tableau associatif en php <=> object json (en node.js)
+
+
+par exemple
+{'error': true, 'msg': 'errorrrrr'} <=> ["error" => "true", "msg" => "error"]
+
+template (avec notation) Payment is in App(paypal_sf)/src/Resources/views/Payment
+@App/Payment/payment_paypal.html.twig'
+
+
+formatted en json un array d'object
+creer un array
+
+on fiat un foreach et a chaque itteration on creer un array associatif avec les champs voulu et on le met dans le premier array
+  $user = $this->getDoctrine()
+            ->getRepository(User::class)
+            ->find($user_id);
+
+        //var_dump($user->getArticles()[1]->getName());
+
+        $articles = [];
+        foreach ($user->getArticles() as $article){
+            $articles[] = [
+                "name" => $article->getName(),
+                "price" => $article->getPrice(),
+                "description" => $article->getDescription(),
+                "date_added" => $article->getDateAdded()
+            ];
+        }
+
+        if($user){
+            return new JsonResponse(array(
+                'error' => false,
+                'user' => [
+                    "name" => $user->getName(),
+                    "firstname" => $user->getFirstName(),
+                    "email" => $user->getEmail(),
+                    "articles" => $articles
+                    ]
+            ));
