@@ -1,0 +1,1 @@
+config.yml faire pour le plugin paypal avec nos clef api paypal 
